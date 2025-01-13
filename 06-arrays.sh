@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 MOVIES=("pushpa" "rrr" "devara")
 # index starts from 0, size is 3
