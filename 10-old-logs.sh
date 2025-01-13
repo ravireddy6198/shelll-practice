@@ -20,7 +20,7 @@
 FILES_TO_DELETE=$(find $SOURCE -name "*.log" -mtime +14) &>>/home/ravi/old-logs/delete.log
 echo "Files to be deleted: $FILES_TO_DELETE"
 
-while read -r filepath # here filepath is the variable name, you can give any name
+while read -r -n filepath # here filepath is the variable name, you can give any name
 do
     echo "Deleting file: $filepath" 
     rm -rf $filepath
