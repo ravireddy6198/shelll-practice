@@ -30,7 +30,7 @@ then
     VALIDATE $? "Installing Mysql"
     
 else
-     -e " Mysql os already ........$Y installed"
+     echo -e " Mysql os already ........$Y installed"
 fi
 
 echo " script continued"
