@@ -9,7 +9,7 @@ echo "files to delete : $FILES_DELETE"
 while read -r filepath
 do
 
-        echo " deleting file : $filepath
+        echo " deleting file : $filepath"
         rm -rf $filepath
 
 
