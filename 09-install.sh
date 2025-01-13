@@ -6,11 +6,11 @@ then
     exit 1
 fi
 
-apt list installed mysql
+apt list --installed
 
 if [ $? -ne 0 ]
 then
-    apt install mysql-server -y
+    apt-get install mysql-server -y
     if [ $? -ne 0 ]
     then
         echo " Mysql installing ....... failure"
