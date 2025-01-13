@@ -6,7 +6,9 @@ R="\e[31m"
 G="\2[32m"
 Y="\e[33m"
 
-LOG_FOLDER="/var/log/shell-script"
+mkdir -p /home/ravi/shell-scriptlogs
+
+LOG_FOLDER="/home/ravi/shell-scriptlogs"
 LOG_FILE=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d---%H:%M:%S)
 LOG_FILE_NAME="$LOG_FOLDER/$LOG_FILE   $TIMESTAMP.log"
