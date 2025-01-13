@@ -13,6 +13,6 @@ do
         rm -rf $filepath
 
 
-done <<<$FILES_DELETE
+done <<< $FILES_DELETE
 
 echo " all files deleted"
