@@ -32,13 +32,17 @@ VALIDATE(){
 
 apt list --installed &>>$LOG_FILE_NAME
 
-if [ $? -ne 0 ]
-then
-    apt-get install mysql-server -y &>>$LOG_FILE_NAME
-    VALIDATE $? "Installing Mysql"
-    
-else
-     echo -e " Mysql os already ........$Y installed"
-fi
+for package in $@ 
+do
+    apt list --installed &>>$LOG_FILE_NAME
+    if [ $? -ne 0 ]
+    then
+        apt-get install mysql-server -y &>>$LOG_FILE_NAME
+        VALIDATE $? "Installing $package"
+        
+    else
+        echo -e " $package os already ........$Y installed "
+    fi
+done
 
 echo " script continued"
