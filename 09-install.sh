@@ -37,7 +37,7 @@ do
     apt list --installed &>>$LOG_FILE_NAME
     if [ $? -ne 0 ]
     then
-        apt-get install mysql-server -y &>>$LOG_FILE_NAME
+        apt-get install $package -y &>>$LOG_FILE_NAME
         VALIDATE $? "Installing $package"
         
     else
