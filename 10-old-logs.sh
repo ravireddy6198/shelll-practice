@@ -42,7 +42,7 @@ echo " $files_to_delete"
 while read -r filepath
 do
     rm -rf $filepath
-done >>> $files_to_delete
+done <<< $files_to_delete
 
 
 
