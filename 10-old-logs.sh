@@ -1,28 +1,49 @@
 #!/bin/bash
 
- #SOURCE="/home/ravi/old-logs"
+USERID=$(id -u)
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 
-# FILES_DELETE=$(find $SOURCE -name "*.log" -mtime +14)
+SOURCE_DIR="/home/ravi/delete-old-logs"
 
-# echo "files to delete : $FILES_DELETE"
+LOGS_FOLDER="/home/ravi/shell-scriptlogs"
+LOG_FILE=$(echo $0 | cut -d "." -f1 )
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
+LOG_FILE_NAME="$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log"
 
-# while read -r filepath
-# do
-#         echo " deleting file : $filepath"
-#         rm -rf $filepath
-# done <<< $FILES_DELETE
+VALIDATE(){
+    if [ $1 -ne 0 ]
+    then
+        echo -e "$2 ... $R FAILURE $N"
+        exit 1
+    else
+        echo -e "$2 ... $G SUCCESS $N"
+    fi
+}
 
-# echo " all files deleted"
+CHECK_ROOT(){
+    if [ $USERID -ne 0 ]
+    then
+        echo "ERROR:: You must have sudo access to execute this script"
+        exit 1 #other than 0
+    fi
+}
+
+echo "Script started executing at: $TIMESTAMP" &>>$LOG_FILE_NAME
 
 
- SOURCE="/home/ravi/old-logs"
- DEST="/home/ravi/old-logs/delete.log"
-FILES_TO_DELETE=$(find $SOURCE -name "*.log" -mtime +14) &>>/home/ravi/old-logs/delete.log
-echo "Files to be deleted: $FILES_TO_DELETE"
 
-while read -r -n filepath # here filepath is the variable name, you can give any name
+files_to_delete=$(find $SOURCE_DIR -name "*.log" -mtime +14)
+
+echo " $files_to_delete"
+
+while read -r filepath
 do
-    echo "Deleting file: $filepath" 
     rm -rf $filepath
-    echo "Deleted file: $filepath"
-done <<< $DEST
+done >>> $files_to_delete
+
+
+
+
